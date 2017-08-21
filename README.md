@@ -18,5 +18,5 @@ A tool that generates text about Megan making tools that make tools.
 > based on xkcd comic #1629: "Tools". https://xkcd.com/1629/
 
 ## Config
-- `iterations` changes how many phrases are generated.
-- `delay` changes the time between each phrase. You can comment this out if you don't want any delay (it's purely cosmetic).
+- [`iterations`](https://github.com/pseigo/xkcd-tools/blob/19fad905b7ed6309d2552386215e78c8a40149f5/main.cpp#L43) changes how many phrases are generated.
+- [`delay`](https://github.com/pseigo/xkcd-tools/blob/19fad905b7ed6309d2552386215e78c8a40149f5/main.cpp#L44) changes the time between each phrase. You can comment this out if you don't want any delay (it's purely cosmetic).
