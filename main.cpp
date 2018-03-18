@@ -1,6 +1,6 @@
-#include <iostream>
 #include <cstdlib>      // srand, rand
 #include <ctime>        // time
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -10,8 +10,7 @@ void generate(const vector<string>&, const vector<string>&, const vector<string>
 
 int main()
 {
-    // TODO get words from a file or something because this is a MESS
-    vector<string> verbs = {
+    const vector<string> verbs = {
         "make",
         "monitor",
         "deploy",
@@ -22,7 +21,7 @@ int main()
         "compile",
     };
 
-    vector<string> participles = {
+    const vector<string> participles = {
         "making",
         "monitoring",
         "deploying",
@@ -33,20 +32,21 @@ int main()
         "compiling",
     };
 
-    vector<string> nouns = {
+    const vector<string> nouns = {
         "tools",
         "code",
         "monitors"
     };
 
+    const unsigned iterations = 20;	// # of phrases to generate
+    const unsigned delay = 1000;	// in milliseconds
+
     srand( unsigned(time(0)) );
-    unsigned iterations = 20;	// how many layers are there to this onion?
-    unsigned delay = 1000;	// milliseconds
 
     cout << "Cueball: What do you do?\n\n";
     cout << "Megan: I make tools" << flush;
 
-    for (int i = 0; i != 20; ++i) {
+    for (int i = 0; i != iterations; ++i) {
         cout << ' ';
         generate(verbs, participles, nouns);
 
@@ -65,7 +65,7 @@ int main()
 // TODO use something efficient
 void wait(int time)
 {
-    long referenceTime = clock() + time; // in ms
+    const long referenceTime = clock() + time; // in milliseconds
 
     while (referenceTime - clock() > 0);
     cout << flush;
@@ -75,23 +75,22 @@ void generate(const vector<string>& verbs,
     const vector<string>& participles,
     const vector<string>& nouns)
 {
-    // START LOOP
-    bool verb = rand() % 2;
-    auto nounIndex = rand() % nouns.size();
+    const bool verb = rand() % 2;
+    const auto nounIndex = rand() % nouns.size();
 
-    // rand % (max - min + 1) + min
-    // rand % (verbs.size() + 1)
     if (verb) {
-        auto verbIndex = rand() % verbs.size();
-        bool makePlural = rand() % 2;
+        const auto verbIndex = rand() % verbs.size();
+        const bool makePlural = rand() % 2;
 
         cout << "that " << verbs[verbIndex];
-        if (makePlural)
-            cout << 's';
-        cout << ' ' << nouns[nounIndex];
 
+        if (makePlural) {
+            cout << 's';
+        }
+
+        cout << ' ' << nouns[nounIndex];
     } else {
-        auto participleIndex = rand() % participles.size();
+        const auto participleIndex = rand() % participles.size();
 
         cout << "for " << participles[participleIndex]
              << ' ' << nouns[nounIndex];
